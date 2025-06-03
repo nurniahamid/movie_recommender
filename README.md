@@ -17,13 +17,35 @@ Dari sisi bisnis, jika pengguna tidak menonton film secara aktif, maka perusahaa
 Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memilih film yang relevan berdasarkan preferensi mereka dan riwayat interaksi mereka sebelumnya.
 
 ### Problem Statements 
-1. Berdasarkan data mengenai pengguna, bagaimana membuat sistem rekomendasi yang dipersonalisasi dengan teknik content-based filtering?
+1. Bagaimana memberikan rekomendasi film yang relevan kepada pengguna berdasarkan preferensi genre yang dimilikinya?
 
-2. Bagaimana perusahaan dapat merekomendasikan film lain yang mirip dengan film yang disukai oleh pengguna
+2. Bagaimana menyarankan film kepada pengguna dengan mempertimbangkan perilaku pengguna lain yang memiliki preferensi serupa?
 
 ### Goals 
+1. Membangun sistem rekomendasi berbasis konten (content-based filtering) yang dapat menganalisis informasi film (seperti genre) untuk memberikan saran yang sesuai dengan riwayat tontonan pengguna.
+2. Mengembangkan sistem rekomendasi berbasis kolaboratif (collaborative filtering) yang dapat memberikan saran kepada pengguna berdasarkan pola rating dan preferensi dari pengguna lain yang serupa.
 
+### Solution statements
 
+## Data Understanding
+Data yang digunakan adalah data movierecommenderdataset 
+Data tersebut memiliki dua file csv yaitu : movies dan ratings
+1. Movie: merupakan jumlah data film 
+- Jumlah data film = 972
+- Variabel dalam data movies = 
+  - movieId = id unik film 
+  - title = judul film
+  - genres = genres film
+- Jumlah Jenis Genre film :  951
+ 
+2. ratings : merupakan data rating pengguna terhadap film
+- Banyaknya data rating :  610
+- Banyaknya film yang di rating :  9724
+- Variabel dalam data ratings :
+  - userId : id unik dari user /pengguna
+  - movieId : id Unik film
+  - rating : nilai yang diberikan oleh user
+  - timestamp : 
 
 
 
