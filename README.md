@@ -9,6 +9,19 @@
   Sistem rekomendasi membantu meningkatkan retensi dan konsumsi konten secara signifikan di platform hiburan digital seperti Netflix (Gómez-Uribe & Hunt, 2016). Selain itu, mereka juga memberikan keunggulan kompetitif dan mendukung pengambilan keputusan berbasis data dalam industri (Ricci et al., 2015; Jannach et al., 2021).
 
 
+## Business Understanding
+Banyak pengguna layanan streaming seperti Netflix atau Disney++ merasa kewalahankarena terlalu banyak pilihan film, sehingga mereka sulit menemukan film yang benar-benar sesuai dengan minat mereka. Hal ini dapat menurunkan kepuasan pengguna dan meningkatkan resiko churn (berhenti berlangganan).
+
+Dari sisi bisnis, jika pengguna tidak menonton film secara aktif, maka perusahaan kehilangan potensi keuntungan, baik dari iklan, retensi pelanggan, maupun penggunaan konten.
+
+Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memilih film yang relevan berdasarkan preferensi mereka dan riwayat interaksi mereka sebelumnya.
+
+### Problem Statements 
+1. Berdasarkan data mengenai pengguna, bagaimana membuat sistem rekomendasi yang dipersonalisasi dengan teknik content-based filtering?
+
+2. Bagaimana perusahaan dapat merekomendasikan film lain yang mirip dengan film yang disukai oleh pengguna
+
+### Goals 
 
 
 
