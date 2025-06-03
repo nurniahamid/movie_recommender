@@ -3,7 +3,9 @@
 ## Project Overview
 
   Di era digital saat ini, informasi dan pilihan hiburan sangat melimpah , termasuk dalam industri perfilman. Platform seperti Netflix, Disney+, atau layanan streaming lainnya memiliki ribuan judul film yang membuat pengguna kesulitan dalam memilih tontonan yang sesuai dengan preferensi mereka. Oleh karena itu, sistem rekomendasi menjadi hal yang penting untuk membantu pengguna menemukan film relavan dan menarik bagi mereka. 
+  
   Selain memberikan pengalaman pengguna yang lebih personal, sistem rekomendasi juga memberikan berbagai keuntungan strategis bagi industri hiburan dan teknologi, antara lain: Meningkatkan Retensi Pengguna, Mendorong Konsumsi Konten, Optimalisasi Promosi dan Distribusi, Pengambilan Keputusan Berbasis Data, Keunggulan Kompetitif. 
+  
   Sistem rekomendasi membantu meningkatkan retensi dan konsumsi konten secara signifikan di platform hiburan digital seperti Netflix (Gómez-Uribe & Hunt, 2016). Selain itu, mereka juga memberikan keunggulan kompetitif dan mendukung pengambilan keputusan berbasis data dalam industri (Ricci et al., 2015; Jannach et al., 2021).
 
 
