@@ -45,7 +45,7 @@ Data tersebut memiliki dua file csv yaitu : movies dan ratings
   - userId : id unik dari user /pengguna
   - movieId : id Unik film
   - rating : nilai yang diberikan oleh user
-  - timestamp : 
+  - timestamp :   
 
 
 
