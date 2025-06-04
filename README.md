@@ -29,24 +29,35 @@ Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memil
 
 ## Data Understanding
 Data yang digunakan adalah data movierecommenderdataset 
+Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
 Data tersebut memiliki dua file csv yaitu : movies dan ratings
 1. Movie: merupakan jumlah data film 
-- Jumlah data film = 972
-- Variabel dalam data movies = 
-  - movieId = id unik film 
-  - title = judul film
-  - genres = genres film
+- Jumlah data film = 9742
+- Variabel dalam data movies :
+  - movieId = merupakan id unik untuk setiap film
+  - title = judul film disertai dengan tahun rilis didalam tanda kurung ()
+  - genres = berisi genre film, bisa lebih dari satu genre
 - Jumlah Jenis Genre film :  951
  
 2. ratings : merupakan data rating pengguna terhadap film
 - Banyaknya data rating :  610
-- Banyaknya film yang di rating :  9724
+- Banyaknya film yang di rating :  banyaknya data rating
 - Variabel dalam data ratings :
   - userId : id unik dari user /pengguna
-  - movieId : id Unik film
-  - rating : nilai yang diberikan oleh user
-  - timestamp :   
+  - movieId : ID unik untuk setiap film yang dirating
+  - rating : Nilai rating yang diberikan pengguna terhadap film tertentu.
+  - timestamp : Waktu ketika rating diberikan
 
+# Data Preparation 
+
+Pada tahapan data preparation tahapan yang dilakukan dalam prject ini adalah :
+- Menggabungkan data movies dan data ratings ini dilakukan untuk menyatukan infoermasi dari dua tabel yang saling melengkapi untuk analissis dan pemodelan
+- Memeriksa jika terdapat null dalamdata, dan di data ini sudah tidak terdapat lagi data null
+- dalam kolom genre terdapat multi-kata, agar pada saat tahapan vektorizer multi kata tersebut tidak dianggap sebagai genre yang berbeda, jadi kita akan mengganti tanda (-) menjadi (_) dan mengubah format Adventure|Animation|Children menjadi Adventure Animation Children atau mengubah tanda pemisal menjadi spasi.
+- menghapus data duplikasi yang memiliki movieId yang sama. karena 1 film bisa muncul berkali-kali(karena user berbeda dalam ratings), sedangkan kita hanya ingin satu data unik untuk per film
+- mengonversi kolom DataFrame kedalam bentuk list untuk proses lanjutan ekstraksi fitur
+- setelah itu buat dictionary untuk menentukan pasangan key-value pada data movie_id, movie_title, dan movie_genres yang telah kita siapkan sebelumnya
+- sehingga menghasilkan data frame baru yaitu movie_new yang akan kita gunakan untuk tahapan modeling
 
 
 
