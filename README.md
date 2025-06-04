@@ -26,11 +26,18 @@ Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memil
 2. Mengembangkan sistem rekomendasi berbasis kolaboratif (collaborative filtering) yang dapat memberikan saran kepada pengguna berdasarkan pola rating dan preferensi dari pengguna lain yang serupa.
 
 ### Solution statements
+Untuk menjawab masalah yang telah diidentifikasi, proyek ini menggunakan dua pendekatan utama:
+1.Content-Based Filtering
+Rekomendasi diberikan berdasarkan kemiripan konten film, khususnya genre, menggunakan TF-IDF dan cosine similarity. Cocok untuk pengguna baru karena tidak memerlukan data pengguna lain.
+2. Collaborative Filtering (Item-Based)
+Rekomendasi berdasarkan kesamaan pola rating antar film menggunakan Pearson correlation. Pendekatan ini memperhitungkan preferensi pengguna lain yang serupa, sehingga lebih personal dan variatif.
+
+Kombinasi kedua pendekatan ini membuat sistem rekomendasi lebih fleksibel dan relevan bagi berbagai tipe pengguna.
 
 ## Data Understanding
-Data yang digunakan adalah data movierecommenderdataset 
-Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
-Data tersebut memiliki dua file csv yaitu : movies dan ratings
+- Data yang digunakan adalah data movierecommenderdataset 
+- Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
+- Data tersebut memiliki dua file csv yaitu : movies dan ratings
 1. Movie: merupakan data film 
 - Jumlah data film = 9742
 - Variabel dalam data movies :
@@ -50,14 +57,15 @@ Data tersebut memiliki dua file csv yaitu : movies dan ratings
 
 ## Data Preparation 
 
-Pada tahapan data preparation tahapan yang dilakukan dalam prject ini adalah :
-- Menggabungkan data movies dan data ratings ini dilakukan untuk menyatukan infoermasi dari dua tabel yang saling melengkapi untuk analissis dan pemodelan
-- Memeriksa jika terdapat null dalamdata, dan di data ini sudah tidak terdapat lagi data null
-- dalam kolom genre terdapat multi-kata, agar pada saat tahapan vektorizer multi kata tersebut tidak dianggap sebagai genre yang berbeda, jadi kita akan mengganti tanda (-) menjadi (_) dan mengubah format Adventure|Animation|Children menjadi Adventure Animation Children atau mengubah tanda pemisal menjadi spasi.
-- menghapus data duplikasi yang memiliki movieId yang sama. karena 1 film bisa muncul berkali-kali(karena user berbeda dalam ratings), sedangkan kita hanya ingin satu data unik untuk per film
-- mengonversi kolom DataFrame kedalam bentuk list untuk proses lanjutan ekstraksi fitur
-- setelah itu buat dictionary untuk menentukan pasangan key-value pada data movie_id, movie_title, dan movie_genres yang telah kita siapkan sebelumnya
-- sehingga menghasilkan data frame baru yaitu movie_new yang akan kita gunakan untuk tahapan modeling
+Tahapan data preparation yang dilakukan dalam proyek ini meliputi langkah-langkah berikut:
+
+- Menggabungkan data dari dua tabel, yaitu movies dan ratings. Langkah ini bertujuan untuk mengintegrasikan informasi film (judul dan genre) dengan data interaksi pengguna (userId, rating), sehingga analisis dan pemodelan dapat dilakukan dengan lebih komprehensif.
+- Memeriksa nilai null dalam data. Setelah dilakukan pengecekan, tidak ditemukan nilai null yang perlu ditangani.
+- Membersihkan kolom genres, karena genre ditulis dalam format dengan pemisah | (contoh: Adventure|Animation|Children). Agar setiap genre dikenali sebagai satu token unik pada tahap vectorization, tanda | diganti menjadi spasi ( ), dan tanda hubung seperti sci-fi diubah menjadi sci_fi.
+- Menghapus data duplikat berdasarkan movieId. Hal ini dilakukan karena satu film dapat muncul berulang kali (dari user yang berbeda), sedangkan untuk proses content-based filtering, kita hanya membutuhkan satu entri unik per film.
+- Mengonversi beberapa kolom menjadi bentuk list, seperti movieId, title, dan genres, untuk keperluan ekstraksi fitur dan pemetaan ke dictionary.
+- Membuat dictionary untuk menyimpan pasangan key-value dari ketiga kolom utama (movieId, title, genres) guna memudahkan referensi dan pemrosesan data pada tahap berikutnya.
+- Membentuk DataFrame baru bernama movie_new, yang terdiri dari data film unik yang telah dibersihkan dan dipersiapkan. DataFrame ini akan digunakan sebagai data input utama pada tahap modeling, khususnya untuk pendekatan content-based filtering.
 
 ## Modeling 
 
@@ -119,13 +127,37 @@ Aspek	Collaborative Filtering (Item-Based)
   - Membutuhkan data rating yang cukup banyak
   - Rentan terhadap cold-start problem untuk film baru
 
+  ## Evaluation 
 
+1. Metrik Evaluasi yang Digunakan
+Dalam sistem rekomendasi ini , ada beberapa metrik yang digunakan :
 
+a. Cosine Similarity (untuk Content-Based Filtering)
+  - Cosine similarity mengukur kemiripan antara dua item berdasarkan vektor fitur (dalam kasus ini: genre TF-IDF).
+  - Rumus:
 
+    ![image](https://github.com/user-attachments/assets/cbe87e03-e7e2-44ae-a103-4d4a1b96403e)
+  - Nilainya berkisar dari 0 (tidak mirip) hingga 1 (sangat mirip).
+  - Dalam proyek ini, digunakan untuk menghitung seberapa mirip film A dengan film B, sehingga bisa direkomendasikan.
 
+b. Pearson Correlation (untuk Collaborative Filtering)
+  - Digunakan untuk mengukur kemiripan pola rating antara dua film berdasarkan rating pengguna.
+  - Rumus :
 
+    ![image](https://github.com/user-attachments/assets/20315841-03ff-4c73-bb71-6a9c8243edf3)
+  - Nilai +1: sangat mirip, 0: tidak berkorelasi, -1: sangat berlawanan.
+  - Dalam proyek ini, digunakan untuk melihat apakah dua film memiliki pola rating yang serupa oleh user-user yang sama, dan digunakan sebagai dasar dalam item-based collaborative filtering.
 
+### Hasil Evaluasi 
+1. Content-Based Filtering
+- Menghasilkan rekomendasi yang relevan secara konten karena menggunakan kemiripan genre.
+- Contoh: Film "Waterboy, The (1998)" menghasilkan rekomendasi film dengan genre serupa (comedy, sports).
+- Cosine similarity menunjukkan nilai tinggi (> 0.7) untuk film-film yang memang sangat mirip secara konten.
 
+2.  Collaborative Filtering
+- Memberikan hasil rekomendasi berdasarkan pola kesukaan banyak pengguna.
+- Misal: Untuk film "Forrest Gump (1994)", film-film yang direkomendasikan memiliki korelasi > 0.5, artinya banyak user yang menyukai Forrest Gump juga menyukai film-film tersebut.
+- Pearson correlation digunakan untuk memastikan hanya film dengan jumlah user overlap ≥ 5 yang dihitung, demi menghindari overfitting.
 
 
 
@@ -281,39 +313,18 @@ Aspek	Collaborative Filtering (Item-Based)
 
 
 
+Referensi : 
 
-
-
-
-
-
-
-
-
-
-
-
-
-📚 Referensi yang bisa kamu cantumkan:
-Gómez-Uribe, C. A., & Hunt, N. (2016).
-The Netflix Recommender System: Algorithms, Business Value, and Innovation.
+1. Gómez-Uribe, C. A., & Hunt, N. (2016).
+The Netflix recommender system: Algorithms, business value, and innovation.
 ACM Transactions on Management Information Systems (TMIS), 6(4), 13.
-👉 https://dl.acm.org/doi/10.1145/2843948
-✅ Membahas langsung tentang bagaimana sistem rekomendasi meningkatkan engagement, retensi, dan personalisasi di Netflix.
+https://doi.org/10.1145/2843948
 
-Ricci, F., Rokach, L., & Shapira, B. (Eds.). (2015).
-Recommender Systems Handbook.
-Springer.
-✅ Referensi utama dalam bidang sistem rekomendasi, mencakup manfaat strategis bagi bisnis.
+2. Ricci, F., Rokach, L., & Shapira, B. (Eds.). (2015).
+Recommender systems handbook.
+Springer. https://doi.org/10.1007/978-1-4899-7637-6
 
-Jannach, D., Adomavicius, G., & Tuzhilin, A. (2021).
-Recommender Systems: Challenges, Insights and Research Opportunities.
-ACM Transactions on Intelligent Systems and Technology.
-👉 https://dl.acm.org/doi/10.1145/3457607
-✅ Menyoroti manfaat sistem rekomendasi untuk pengalaman pengguna dan bisnis secara keseluruhan.
-
-
-Gómez-Uribe, Carlos A., and Neil Hunt. (2015). "The Netflix Recommender System: Algorithms, Business Value, and Innovation." ACM Transactions on Management Information Systems (TMIS).
-
-Ricci, F., Rokach, L., & Shapira, B. (2011). Introduction to Recommender Systems Handbook. Springer.
-
+3. Jannach, D., Adomavicius, G., & Tuzhilin, A. (2021).
+Recommender systems: Challenges, insights and research opportunities.
+ACM Transactions on Intelligent Systems and Technology (TIST), 12(1), 1–42.
+https://doi.org/10.1145/3457607
