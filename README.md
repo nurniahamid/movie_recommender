@@ -31,7 +31,7 @@ Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memil
 Data yang digunakan adalah data movierecommenderdataset 
 Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
 Data tersebut memiliki dua file csv yaitu : movies dan ratings
-1. Movie: merupakan jumlah data film 
+1. Movie: merupakan data film 
 - Jumlah data film = 9742
 - Variabel dalam data movies :
   - movieId = merupakan id unik untuk setiap film
