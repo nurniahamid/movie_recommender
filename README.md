@@ -27,8 +27,10 @@ Oleh karena itu, dibutuhkan sistem rekomendasi yang bisa membantu pengguna memil
 
 ### Solution statements
 Untuk menjawab masalah yang telah diidentifikasi, proyek ini menggunakan dua pendekatan utama:
-1.Content-Based Filtering
+
+1. Content-Based Filtering
 Rekomendasi diberikan berdasarkan kemiripan konten film, khususnya genre, menggunakan TF-IDF dan cosine similarity. Cocok untuk pengguna baru karena tidak memerlukan data pengguna lain.
+
 2. Collaborative Filtering (Item-Based)
 Rekomendasi berdasarkan kesamaan pola rating antar film menggunakan Pearson correlation. Pendekatan ini memperhitungkan preferensi pengguna lain yang serupa, sehingga lebih personal dan variatif.
 
