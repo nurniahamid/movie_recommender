@@ -48,7 +48,7 @@ Data tersebut memiliki dua file csv yaitu : movies dan ratings
   - rating : Nilai rating yang diberikan pengguna terhadap film tertentu.
   - timestamp : Waktu ketika rating diberikan
 
-# Data Preparation 
+## Data Preparation 
 
 Pada tahapan data preparation tahapan yang dilakukan dalam prject ini adalah :
 - Menggabungkan data movies dan data ratings ini dilakukan untuk menyatukan infoermasi dari dua tabel yang saling melengkapi untuk analissis dan pemodelan
@@ -74,6 +74,20 @@ Model akan mencari film yang memiliki nilai similarity tertinggi (Top-N) terhada
 Contoh Output : Ketika pengguna menyukai film "Waterboy, The (1998)", sistem akan merekomendasikan 5 film yang memiliki genre paling mirip.
 ![image](https://github.com/user-attachments/assets/99f4b052-485f-48a9-85fa-354e22f303b7)
 
+#### Kelebihan dan Kekurangan
+Aspek	Content-Based Filtering
+- Kelebihan	
+  - Tidak memerlukan data pengguna lain (berbasis konten film itu sendiri)
+  - Dapat memberikan rekomendasi pada pengguna baru (asalkan ada preferensi awal)
+  - Tidak terpengaruh oleh sparsity (data rating yang jarang)
+- Kekurangan 
+  - Cenderung memberikan rekomendasi yang sempit (kurang bervariasi atau terlalu mirip)
+  - Tidak bisa menangkap selera kolektif dari pengguna lain (misalnya tren)
+  - Membutuhkan representasi fitur yang relevan dan baik dari item (dalam hal ini genre)
+
+
+
+
 ### Collaborative Filtering 
 
 Selain pendekatan berbasis konten (Content-Based Filtering), proyek ini juga mengimplementasikan pendekatan Collaborative Filtering, khususnya item-based collaborative filtering menggunakan Pearson Correlation. Pendekatan ini menganalisis pola rating dari pengguna yang sama terhadap film yang berbeda, untuk mengetahui kemiripan antar film.
@@ -96,12 +110,14 @@ Sebagai contoh, berikut adalah hasil ketika pengguna menyukai "Forrest Gump (199
 
 ![image](https://github.com/user-attachments/assets/fc98a3c4-ac5c-4032-9af1-2acb093b66ec)
 
-Kelebihan dan Kekurangan
+#### Kelebihan dan Kekurangan
 Aspek	Collaborative Filtering (Item-Based)
-Kelebihan	- Tidak bergantung pada konten film
-- Bisa menangkap pola preferensi tersembunyi antar pengguna
-Kekurangan	- Membutuhkan data rating yang cukup banyak
-- Rentan terhadap cold-start problem untuk film baru
+- Kelebihan :
+  - Tidak bergantung pada konten film
+  - Bisa menangkap pola preferensi tersembunyi antar pengguna
+- Kekurangan	:
+  - Membutuhkan data rating yang cukup banyak
+  - Rentan terhadap cold-start problem untuk film baru
 
 
 
