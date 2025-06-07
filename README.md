@@ -67,15 +67,40 @@ Proyek ini menggunakan dataset rekomendasi film dari Kaggle yang dapat diakses m
 
 ## Data Preparation 
 
-Tahapan data preparation yang dilakukan dalam proyek ini meliputi langkah-langkah berikut:
+Pada tahap ini, dilakukan serangkaian proses persiapan data yang penting untuk mendukung dua pendekatan sistem rekomendasi: Content-Based Filtering dan Collaborative Filtering. Proses dilakukan secara terstruktur agar data siap digunakan dalam tahap modeling.
 
-- Menggabungkan data dari dua tabel, yaitu movies dan ratings. Langkah ini bertujuan untuk mengintegrasikan informasi film (judul dan genre) dengan data interaksi pengguna (userId, rating), sehingga analisis dan pemodelan dapat dilakukan dengan lebih komprehensif.
-- Memeriksa nilai null dalam data. Setelah dilakukan pengecekan, tidak ditemukan nilai null yang perlu ditangani.
-- Membersihkan kolom genres, karena genre ditulis dalam format dengan pemisah | (contoh: Adventure|Animation|Children). Agar setiap genre dikenali sebagai satu token unik pada tahap vectorization, tanda | diganti menjadi spasi ( ), dan tanda hubung seperti sci-fi diubah menjadi sci_fi.
-- Menghapus data duplikat berdasarkan movieId. Hal ini dilakukan karena satu film dapat muncul berulang kali (dari user yang berbeda), sedangkan untuk proses content-based filtering, kita hanya membutuhkan satu entri unik per film.
-- Mengonversi beberapa kolom menjadi bentuk list, seperti movieId, title, dan genres, untuk keperluan ekstraksi fitur dan pemetaan ke dictionary.
-- Membuat dictionary untuk menyimpan pasangan key-value dari ketiga kolom utama (movieId, title, genres) guna memudahkan referensi dan pemrosesan data pada tahap berikutnya.
-- Membentuk DataFrame baru bernama movie_new, yang terdiri dari data film unik yang telah dibersihkan dan dipersiapkan. DataFrame ini akan digunakan sebagai data input utama pada tahap modeling, khususnya untuk pendekatan content-based filtering.
+#### Content-Based Filtering 
+
+1. Menggabungkan data
+Dataset movies.csv dan ratings.csv digabungkan berdasarkan movieId untuk menyatukan informasi film (title, genres) dengan interaksi pengguna (userId, rating).
+2. Menghapus nilai null dan duplikasi
+- Diperiksa dan tidak ditemukan nilai null pada data hasil penggabungan.
+- Data duplikat berdasarkan movieId dihapus agar setiap film hanya muncul satu kali (hanya satu data unik per film untuk TF-IDF).
+3. Membersihkan kolom genres
+- Tanda pemisah | diganti dengan spasi ( ) agar genre dikenali sebagai token terpisah oleh TF-IDF.
+- Genre seperti sci-fi diubah menjadi sci_fi untuk menjaga integritas kata majemuk.
+4. TF-IDF Vectorization
+- Mengubah kolom genres menjadi representasi numerik dengan TfidfVectorizer.
+- Hasilnya adalah TF-IDF matrix dengan ukuran (n_film, n_genres) yang mewakili bobot genre untuk tiap film.
+5. Membuat Dictionary dan DataFrame film unik
+- Kolom movieId, title, dan genres dikonversi menjadi list untuk memudahkan pemetaan.
+- Dibuat DataFrame baru movie_new yang hanya menyimpan film unik beserta informasi genre-nya.
+
+#### Collaborative Filtering
+
+1. Filtering film populer
+- Hanya film yang telah diberi rating oleh minimal 50 pengguna yang dipertahankan.
+- Tujuannya adalah untuk menjaga keandalan perhitungan korelasi antar film.
+2. Membuat User-Movie Matrix
+- Dibentuk matriks dengan:
+  - Baris: userId
+  - Kolom: title (judul film)
+  - Nilai: rating
+Dilakukan dengan pivot_table().
+3. Data hasil matrix digunakan untuk perhitungan similarity antar film dengan Pearson Correlation.
+
+
+
 
 ## Modeling 
 
