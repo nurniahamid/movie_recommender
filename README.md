@@ -105,16 +105,13 @@ Dilakukan dengan pivot_table().
 ## Modeling 
 
 ### Content-Based Filtering
-Content-Based Filtering merekomendasikan film berdasarkan kemiripan kontennya. Dalam konteks ini, konten yang digunakan adalah genre film.
-
+Sistem rekomendasi berbasis konten menggunakan informasi genre film untuk menentukan kesamaan antar film.
 Langkah-Langkah:
-- TF-IDF Vectorization
-Genre film diubah menjadi representasi numerik menggunakan teknik TF-IDF. Setiap kombinasi genre diperlakukan sebagai dokumen, lalu dikonversi menjadi vektor berbobot.
-- Cosine Similarity
-Untuk mengukur tingkat kemiripan antar film, digunakan cosine similarity pada vektor TF-IDF yang telah dibentuk.
-- Mendapatkan Rekomendasi Film
-Model akan mencari film yang memiliki nilai similarity tertinggi (Top-N) terhadap film input yang diberikan.
-Contoh Output : Ketika pengguna menyukai film "Waterboy, The (1998)", sistem akan merekomendasikan 5 film yang memiliki genre paling mirip.
+- Fitur: Representasi film berdasarkan genre telah diubah menjadi bentuk numerik menggunakan TF-IDF Vectorizer (lihat bagian Data Preparation).
+- Algoritma: Kemiripan antar film dihitung menggunakan Cosine Similarity terhadap vektor TF-IDF. Cosine Similarity mengukur sudut antara dua vektor genre film.
+- Output Rekomendasi:
+Fungsi movie_recommendations() mengembalikan Top-N film yang paling mirip dengan film yang diberikan sebagai input.
+Misalnya, untuk input "Waterboy, The (1998)", sistem akan menampilkan 5 film lain dengan skor kemiripan tertinggi berdasarkan genre-nya
 ![image](https://github.com/user-attachments/assets/99f4b052-485f-48a9-85fa-354e22f303b7)
 
 #### Kelebihan dan Kekurangan
