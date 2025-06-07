@@ -37,7 +37,7 @@ Rekomendasi berdasarkan kesamaan pola rating antar film menggunakan Pearson corr
 Kombinasi kedua pendekatan ini membuat sistem rekomendasi lebih fleksibel dan relevan bagi berbagai tipe pengguna.
 
 ## Data Understanding
-- Data yang digunakan adalah data movierecommenderdataset 
+Proyek ini menggunakan dataset rekomendasi film dari Kaggle yang dapat diakses melalui tautan berikut:
 - Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
 - Data tersebut memiliki dua file csv yaitu : movies dan ratings
 1. Movie: merupakan data film 
@@ -46,7 +46,11 @@ Kombinasi kedua pendekatan ini membuat sistem rekomendasi lebih fleksibel dan re
   - movieId = merupakan id unik untuk setiap film
   - title = judul film disertai dengan tahun rilis didalam tanda kurung ()
   - genres = berisi genre film, bisa lebih dari satu genre
-- Jumlah Jenis Genre film :  951
+- Jumlah kombinasi Genre unik :  951
+- Kondisi data :
+    - Missing values: Tidak ada (0)
+    - Data duplikat: Tidak ditemukan (0)
+    - Outlier: Tidak relevan pada jenis data ini
  
 2. ratings : merupakan data rating pengguna terhadap film
 - Banyaknya data rating :  610
@@ -56,6 +60,10 @@ Kombinasi kedua pendekatan ini membuat sistem rekomendasi lebih fleksibel dan re
   - movieId : ID unik untuk setiap film yang dirating
   - rating : Nilai rating yang diberikan pengguna terhadap film tertentu.
   - timestamp : Waktu ketika rating diberikan
+- Kondisi Data :
+  - Missing values: Tidak ada (0)
+  - Data duplikat: Tidak ditemukan (0)
+  - Outlier: Tidak ditemukan (semua rating valid antara 0.5 – 5.0)
 
 ## Data Preparation 
 
