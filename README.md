@@ -175,8 +175,8 @@ Hasil ini menunjukkan bahwa mayoritas film yang direkomendasikan memiliki genre 
 2.  Collaborative Filtering
 Evaluasi dilakukan terhadap beberapa film populer, salah satunya "Forrest Gump (1994)", dengan menggunakan pendekatan item-based collaborative filtering berbasis Pearson Correlation.
 - Contoh hasil evaluasi:
-  - Precision@5 = 1.00
-  - Recall@5 = 0.75
+  - Precision = 1.00
+  - Recall = 0.75
 - Hasil ini menunjukkan bahwa dari 5 rekomendasi yang diberikan:
   - 100% memiliki setidaknya satu genre yang cocok dengan genre film input.
   - Sistem berhasil mencakup 75% genre dari film Forrest Gump (1994) dalam rekomendasi yang diberikan.
