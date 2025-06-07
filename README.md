@@ -154,32 +154,23 @@ Kedua pendekatan menunjukkan hasil yang konsisten dengan tujuan awal:
 - Content-Based Filtering mampu menyarankan film yang serupa secara konten.
 - Collaborative Filtering dapat menangkap preferensi kolektif pengguna dan memberikan saran berdasarkan selera umum.
 
-  ## Evaluation 
+  ## Evaluation
 
-1. Metrik Evaluasi yang Digunakan
-Dalam sistem rekomendasi ini , ada beberapa metrik yang digunakan :
+Metrik Evaluasi yang digunakan untuk mengukur performa sistem rekomendasi, digunakan metrik kuantitatif yang relavan terhadap task top_N recommendation, yaitu : 
 
-a. Cosine Similarity (untuk Content-Based Filtering)
-  - Cosine similarity mengukur kemiripan antara dua item berdasarkan vektor fitur (dalam kasus ini: genre TF-IDF).
-  - Rumus:
-
-    ![image](https://github.com/user-attachments/assets/cbe87e03-e7e2-44ae-a103-4d4a1b96403e)
-  - Nilainya berkisar dari 0 (tidak mirip) hingga 1 (sangat mirip).
-  - Dalam proyek ini, digunakan untuk menghitung seberapa mirip film A dengan film B, sehingga bisa direkomendasikan.
-
-b. Pearson Correlation (untuk Collaborative Filtering)
-  - Digunakan untuk mengukur kemiripan pola rating antara dua film berdasarkan rating pengguna.
-  - Rumus :
-
-    ![image](https://github.com/user-attachments/assets/20315841-03ff-4c73-bb71-6a9c8243edf3)
-  - Nilai +1: sangat mirip, 0: tidak berkorelasi, -1: sangat berlawanan.
-  - Dalam proyek ini, digunakan untuk melihat apakah dua film memiliki pola rating yang serupa oleh user-user yang sama, dan digunakan sebagai dasar dalam item-based collaborative filtering.
+1. Precision
+   Precision mengukur proporsi rekomendasi yang relevan terhadap total rekomendasi yang diberikan. Contoh: Jika dari 5 film yang direkomendasikan, 4 memiliki genre yang relevan, maka Precision = 0.80
+2. Recall
+   Recall mengukur cakupan genre relevan yang berhasil direkomendasikan dari keseluruhan genre film input.
 
 ### Hasil Evaluasi 
 1. Content-Based Filtering
-- Menghasilkan rekomendasi yang relevan secara konten karena menggunakan kemiripan genre.
-- Contoh: Film "Waterboy, The (1998)" menghasilkan rekomendasi film dengan genre serupa (comedy, sports).
-- Cosine similarity menunjukkan nilai tinggi (> 0.7) untuk film-film yang memang sangat mirip secara konten.
+- Evaluasi dilakukan terhadap 20 film acak dengan evaluate_genre_precision_recall().
+- Rata-rata hasil evaluasi:
+  - Precision = 0.96
+  - Recall = 1.00
+
+Hasil ini menunjukkan bahwa mayoritas film yang direkomendasikan memiliki genre yang sangat relevan dengan film input. Content-Based Filtering bekerja sangat baik untuk menyarankan film yang mirip dari segi konten.
 
 2.  Collaborative Filtering
 - Memberikan hasil rekomendasi berdasarkan pola kesukaan banyak pengguna.
