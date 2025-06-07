@@ -173,9 +173,24 @@ Metrik Evaluasi yang digunakan untuk mengukur performa sistem rekomendasi, digun
 Hasil ini menunjukkan bahwa mayoritas film yang direkomendasikan memiliki genre yang sangat relevan dengan film input. Content-Based Filtering bekerja sangat baik untuk menyarankan film yang mirip dari segi konten.
 
 2.  Collaborative Filtering
-- Memberikan hasil rekomendasi berdasarkan pola kesukaan banyak pengguna.
-- Misal: Untuk film "Forrest Gump (1994)", film-film yang direkomendasikan memiliki korelasi > 0.5, artinya banyak user yang menyukai Forrest Gump juga menyukai film-film tersebut.
-- Pearson correlation digunakan untuk memastikan hanya film dengan jumlah user overlap ≥ 5 yang dihitung, demi menghindari overfitting.
+Evaluasi dilakukan terhadap beberapa film populer, salah satunya "Forrest Gump (1994)", dengan menggunakan pendekatan item-based collaborative filtering berbasis Pearson Correlation.
+- Contoh hasil evaluasi:
+  - Precision@5 = 1.00
+  - Recall@5 = 0.75
+- Hasil ini menunjukkan bahwa dari 5 rekomendasi yang diberikan:
+  - 100% memiliki setidaknya satu genre yang cocok dengan genre film input.
+  - Sistem berhasil mencakup 75% genre dari film Forrest Gump (1994) dalam rekomendasi yang diberikan.
+
+Model Collaborative Filtering mampu memberikan rekomendasi yang relevan berdasarkan pola kesukaan pengguna lain, dan dalam kasus ini juga cukup sesuai secara konten (genre). Meskipun CF tidak melihat isi film secara langsung (seperti genre), sistem masih bisa menangkap hubungan implisit antar film berdasarkan pola rating. 
+
+#### Hubungan dengan Business Understanding
+- Evaluasi ini menjawab Problem Statement dan menunjukkan pencapaian Goals:
+  - Content-Based Filtering mampu memberikan rekomendasi yang personal dan relevan, menjawab kebutuhan pengguna untuk menemukan film serupa yang disukai.
+  - Collaborative Filtering menawarkan diversifikasi rekomendasi berdasarkan kebiasaan pengguna lain, yang memberi nilai tambah dari sisi pengalaman penemuan film baru.
+
+- Secara keseluruhan, dua pendekatan ini saling melengkapi:
+  - CBF baik untuk personalisasi berdasarkan selera konten.
+  - CF kuat untuk eksplorasi tren komunitas dan selera kolektif.
 
 
 
