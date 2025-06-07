@@ -69,7 +69,7 @@ Proyek ini menggunakan dataset rekomendasi film dari Kaggle yang dapat diakses m
 
 Pada tahap ini, dilakukan serangkaian proses persiapan data yang penting untuk mendukung dua pendekatan sistem rekomendasi: Content-Based Filtering dan Collaborative Filtering. Proses dilakukan secara terstruktur agar data siap digunakan dalam tahap modeling.
 
-#### Content-Based Filtering 
+### Content-Based Filtering 
 
 1. Menggabungkan data
 Dataset movies.csv dan ratings.csv digabungkan berdasarkan movieId untuk menyatukan informasi film (title, genres) dengan interaksi pengguna (userId, rating).
@@ -86,7 +86,7 @@ Dataset movies.csv dan ratings.csv digabungkan berdasarkan movieId untuk menyatu
 - Kolom movieId, title, dan genres dikonversi menjadi list untuk memudahkan pemetaan.
 - Dibuat DataFrame baru movie_new yang hanya menyimpan film unik beserta informasi genre-nya.
 
-#### Collaborative Filtering
+### Collaborative Filtering
 
 1. Filtering film populer
 - Hanya film yang telah diberi rating oleh minimal 50 pengguna yang dipertahankan.
