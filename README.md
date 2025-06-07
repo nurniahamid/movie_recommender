@@ -130,23 +130,13 @@ Aspek	Content-Based Filtering
 
 ### Collaborative Filtering 
 
-Selain pendekatan berbasis konten (Content-Based Filtering), proyek ini juga mengimplementasikan pendekatan Collaborative Filtering, khususnya item-based collaborative filtering menggunakan Pearson Correlation. Pendekatan ini menganalisis pola rating dari pengguna yang sama terhadap film yang berbeda, untuk mengetahui kemiripan antar film.
-Langkah-langkah Modeling:
-1. Membuat User-Movie Matrix
-Pertama-tama, hanya film yang populer (dengan minimal 50 rating) yang dipertahankan. Kemudian dibuat pivot table dengan:
-- Baris: userId
-- Kolom: title (judul film)
-- Nilai: rating yang diberikan user terhadap film
-2. Menghitung Similarity antar Film
-Selanjutnya, dihitung Pearson correlation antar film, menggunakan fungsi .corr() dengan min_periods=5, agar korelasi hanya dihitung antara film-film yang setidaknya memiliki 5 user yang sama-sama memberi rating.
-Nilai korelasi:
-- 1.0 → rating dua film sangat mirip
-- 0.0 → tidak berkorelasi
-- < 0.0 → berkorelasi negatif
-3. Mendapatkan Rekomendasi Film
-Fungsi recommend_movies() digunakan untuk mencari 5 film yang memiliki korelasi tertinggi terhadap film input. Film yang sama dengan input akan dihapus dari hasil rekomendasi.
-4. Contoh Rekomendasi
-Sebagai contoh, berikut adalah hasil ketika pengguna menyukai "Forrest Gump (1994)":
+Selain pendekatan berbasis konten (Content-Based Filtering), proyek ini juga mengimplementasikan pendekatan Collaborative Filtering, khususnya item-based collaborative filtering menggunakan Pearson Correlation.Pendekatan ini merekomendasikan film berdasarkan pola perilaku pengguna lain.
+
+- Fitur: Matriks interaksi antara user dan film telah dibentuk sebelumnya (lihat Data Preparation), di mana setiap sel menunjukkan rating yang diberikan user terhadap film.
+- Algoritma: Sistem menggunakan Pearson Correlation untuk mengukur kemiripan antar film berdasarkan pola rating dari user-user yang sama.
+Film yang sering diberi rating serupa oleh banyak pengguna dianggap mirip.
+- Output Rekomendasi: Fungsi recommend_movies() akan mengembalikan daftar film dengan skor korelasi tertinggi terhadap film input.
+Contoh: Jika pengguna menyukai "Forrest Gump (1994)", sistem merekomendasikan film lain seperti "Mr. Holland’s Opus (1995)" dan "Pocahontas (1995)" dengan skor korelasi > 0.5.
 
 ![image](https://github.com/user-attachments/assets/fc98a3c4-ac5c-4032-9af1-2acb093b66ec)
 
@@ -158,6 +148,11 @@ Aspek	Collaborative Filtering (Item-Based)
 - Kekurangan	:
   - Membutuhkan data rating yang cukup banyak
   - Rentan terhadap cold-start problem untuk film baru
+ 
+#### Kesimpulan Modeling
+Kedua pendekatan menunjukkan hasil yang konsisten dengan tujuan awal:
+- Content-Based Filtering mampu menyarankan film yang serupa secara konten.
+- Collaborative Filtering dapat menangkap preferensi kolektif pengguna dan memberikan saran berdasarkan selera umum.
 
   ## Evaluation 
 
