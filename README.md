@@ -40,10 +40,10 @@ Kombinasi kedua pendekatan ini membuat sistem rekomendasi lebih fleksibel dan re
 Proyek ini menggunakan dataset rekomendasi film dari Kaggle yang dapat diakses melalui tautan berikut:
 - Link Dataset : https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset
 - Data tersebut memiliki dua file csv yaitu : movies dan ratings
-1. Movie: merupakan data film 
-- Jumlah data film = 9742
-- Variabel dalam data movies :
-  - movieId = merupakan id unik untuk setiap film
+1. movies.csv
+- Jumlah data : 9742 baris x 3 kolom
+- Deskripsi variable : 
+  - movieId = ID unik untuk setiap film
   - title = judul film disertai dengan tahun rilis didalam tanda kurung ()
   - genres = berisi genre film, bisa lebih dari satu genre
 - Jumlah kombinasi Genre unik :  951
@@ -52,14 +52,16 @@ Proyek ini menggunakan dataset rekomendasi film dari Kaggle yang dapat diakses m
     - Data duplikat: Tidak ditemukan (0)
     - Outlier: Tidak relevan pada jenis data ini
  
-2. ratings : merupakan data rating pengguna terhadap film
-- Banyaknya data rating :  610
-- Banyaknya film yang di rating :  banyaknya data rating
-- Variabel dalam data ratings :
+2. ratings.css
+- Jumlah Data : 100,836 baris × 4 kolo
+- Deskripsi variable : 
   - userId : id unik dari user /pengguna
   - movieId : ID unik untuk setiap film yang dirating
   - rating : Nilai rating yang diberikan pengguna terhadap film tertentu.
   - timestamp : Waktu ketika rating diberikan
+- Statistik tambahan :
+  - Jumlah pengguna unik : 610
+  - Jumlah film unik yang diberi rating : 9724
 - Kondisi Data :
   - Missing values: Tidak ada (0)
   - Data duplikat: Tidak ditemukan (0)
